@@ -40,17 +40,25 @@ class ProductDetailsScreen extends StatelessWidget {
       backgroundColor: AppColors.scaffoldBackgroundColor,
       body: Column(children: [
         _image(context),
-        _title_price_rating(context),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: _title_price_rating(context),
+        ),
 
         AppSpaces.spacesHeight15,
         AppSpaces.spacesHeight15,
         Expanded(child: _description(context)),
+
+        _addToCartButton(context),
+
+        AppSpaces.spacesHeight35,
       ]),
     );
   }
 
   Column _title_price_rating(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title!,
@@ -118,11 +126,22 @@ class ProductDetailsScreen extends StatelessWidget {
   }
 
   _description(BuildContext context) {
-    return SingleChildScrollView(
-      child: Text(
-        description!,
-        style: Theme.of(context).textTheme.bodyText1,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+        child: Text(
+          description!,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
       ),
     );
+  }
+
+  _addToCartButton(BuildContext context) {
+    return AppButton(
+    onTap: () {
+
+    }, title: "Add to Cart");
+
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pixl_it/core/extension/string_extendion.dart';
 import 'package:pixl_it/core/utils/app_colors.dart';
 import 'package:pixl_it/core/utils/app_spaces.dart';
 
@@ -76,12 +77,21 @@ class AppProductCardWidgets extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title!.split(" ")[0],
-            style: TextStyle(
-              color: AppColors.textColorOne,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            children: [
+              Text(
+                title!.split(" ")[0].toCapitalized(),
+                style: TextStyle(
+                  color: AppColors.textColorOne,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Spacer(),
+
+
+              Icon(Icons.add_shopping_cart, color: AppColors.white, size: 20),
+            ],
           ),
           AppSpaces.spacesHeight10,
           Row(
@@ -94,16 +104,25 @@ class AppProductCardWidgets extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Row(
+              Column(
                 children: [
-                  Icon(Icons.star, color: AppColors.primaryColor, size: 18),
-                  Text(
-                    rating!.rate.toString(),
-                    style: TextStyle(
-                      color: AppColors.textColorOne,
-                      fontWeight: FontWeight.bold,
-                    ),
+
+
+                  Row(
+                    children: [
+                      Icon(Icons.star, color: AppColors.primaryColor, size: 18),
+                      Text(
+                        rating!.rate.toString(),
+                        style: TextStyle(
+                          color: AppColors.textColorOne,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
+
+
+
                 ],
               )
             ],
@@ -136,6 +155,6 @@ class AppProductCardWidgets extends StatelessWidget {
 
   _category() {
     return Positioned(
-        top: 8, right: 8, child: CategoryNameWidget(name: category));
+        top: 8, right: 8, child: CategoryNameWidget(name: category.toString().toCapitalized()));
   }
 }

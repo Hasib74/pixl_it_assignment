@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pixl_it/core/routes/app_routes.dart';
 import 'package:pixl_it/core/utils/app_spaces.dart';
+import 'package:pixl_it/main.dart';
 import 'package:pixl_it/presentation/_common/widgets/app_button.dart';
 import 'package:pixl_it/presentation/home/bloc/home_cubit.dart';
+import 'package:pixl_it/presentation/home/functions/home_functions.dart';
 import 'package:pixl_it/presentation/home/sectios/home_tap_bar.dart';
 import 'package:pixl_it/presentation/home/sectios/product_list.dart';
 
@@ -38,7 +40,6 @@ class HomeScreen extends StatelessWidget {
           } else if (state is HomeLoaded) {
              productList = state.productList;
 
-
           }
 
           return Column(
@@ -46,7 +47,7 @@ class HomeScreen extends StatelessWidget {
               HomeTabBar(),
               Expanded(
                   child: ProductListSection(
-                    productList: productList,
+                    productList: sl<HomeFunctions>().productList,
                   ))
             ],
           );
