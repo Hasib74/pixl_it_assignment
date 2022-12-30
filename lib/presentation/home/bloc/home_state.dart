@@ -16,9 +16,19 @@ class HomeLoading extends HomeState {
 
 class HomeLoaded extends HomeState {
   final List<ProductModel> productList;
+  final List<String> tabBarItems ;
 
-  HomeLoaded({required this.productList});
+  HomeLoaded({required this.productList , required this.tabBarItems});
 
   @override
   List<Object> get props => [productList];
+}
+
+class HomeTabChanged extends HomeState {
+
+  String currentCategory = 'All';
+
+  HomeTabChanged(this.currentCategory);
+  @override
+  List<Object> get props => [this.currentCategory];
 }

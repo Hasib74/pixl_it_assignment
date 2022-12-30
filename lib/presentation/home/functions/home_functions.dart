@@ -9,6 +9,19 @@ import '../../../domain/useCase/product_use_case.dart';
 class HomeFunctions {
   List<ProductModel>? productList = [];
 
+  List<String> tabList = [];
+
+  String currentCategory = 'All';
+
+
+  setTabList(List<String> _tabList) {
+
+    _tabList.insert(0, "All");
+
+    this.tabList = _tabList.toSet().toList();
+
+  }
+
   Future getAllProductData(void Function(HomeState state) emit,
       ProductUseCase productUseCase) async {
     var _res = await productUseCase.call(GetProductParms());
@@ -24,7 +37,15 @@ class HomeFunctions {
 
       print("Response List: ${productList!}");
 
-      emit(HomeLoaded(productList: productList!));
+      List<String>? _tabBarItems = [];
+
+      productList!.forEach((element) {
+        _tabBarItems.add(element.category!);
+      });
+
+      emit(HomeLoaded(
+          productList: productList!,
+          tabBarItems: _tabBarItems.toSet().toList()));
     }, (r) {
       print("Response : ${r}");
 

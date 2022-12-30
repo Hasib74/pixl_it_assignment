@@ -44,6 +44,7 @@ dependencies:
   rounded_loading_button:
   connectivity_plus:
   cached_network_image:
+  tab_indicator_styler:
 
 dev_dependencies:
   flutter_test:

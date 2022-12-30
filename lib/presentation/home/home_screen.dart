@@ -4,6 +4,7 @@ import 'package:pixl_it/core/routes/app_routes.dart';
 import 'package:pixl_it/core/utils/app_spaces.dart';
 import 'package:pixl_it/presentation/_common/widgets/app_button.dart';
 import 'package:pixl_it/presentation/home/bloc/home_cubit.dart';
+import 'package:pixl_it/presentation/home/sectios/home_tap_bar.dart';
 import 'package:pixl_it/presentation/home/sectios/product_list.dart';
 
 import '../../core/utils/app_colors.dart';
@@ -13,6 +14,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    var productList;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.transparent,
@@ -32,16 +36,20 @@ class HomeScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is HomeLoaded) {
-            var productList = state.productList;
+             productList = state.productList;
 
-            return Center(
-              child: ProductListSection(
-                productList: productList,
-              ),
-            );
-          } else {
-            return Container();
+
           }
+
+          return Column(
+            children: [
+              HomeTabBar(),
+              Expanded(
+                  child: ProductListSection(
+                    productList: productList,
+                  ))
+            ],
+          );
         },
       ),
     );

@@ -16,4 +16,13 @@ class HomeCubit extends Cubit<HomeState> {
   Future getProductData() async {
     return sl<HomeFunctions>().getAllProductData(emit, productUseCase);
   }
+
+  changeTab(String tab) {
+    sl<HomeFunctions>().currentCategory = tab;
+    emit(HomeTabChanged(tab));
+  }
+
+
 }
+
+
